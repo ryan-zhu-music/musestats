@@ -1,32 +1,46 @@
 import Head from "next/head";
 import { useState } from "react";
+import { parseStatistics } from "../utils/parser";
+import { mergeStats } from "../utils/mergeStats";
 
 export default function Home() {
   const [link, setLink] = useState("");
+  const [statistics, setStatistics] = useState<any>({});
 
   const getStats = () => {
-    console.log("Getting stats for " + link);
+    let stats: any = [];
+    let page = 1;
 
-    fetch("/api/hello", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        link: link,
-      }),
-    }).then((res) => {
-      res.json().then((data) => {
-        let response = data.response.split('data-content="')[1];
-        response = response.split("></div>")[0];
-        response = response.trim();
-        response = response.slice(0, -1);
-        response = response.replaceAll("&quot;", '"');
-        response = JSON.parse(response);
-        console.log(response);
-      });
-    });
+    const request = (new_link: string) => {
+      fetch("/api/getStats", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          link: new_link,
+        }),
+      })
+        .then((res) => {
+          if (res.status == 200) {
+            page++;
+            res.json().then((data) => {
+              stats.push(parseStatistics(data.response));
+              request(link + "sheetmusic/?page=" + String(page));
+            });
+          } else {
+            setStatistics(mergeStats(stats));
+            return;
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    request(link + "sheetmusic/?page=" + String(page));
   };
+
+  console.log(statistics);
 
   return (
     <>
@@ -44,7 +58,7 @@ export default function Home() {
         <h2 className="text-2xl font-medium mt-4">
           Get statistics for any MuseScore account!
         </h2>
-        <div>
+        <div className="flex items-center justify-center flex-col">
           <p className="text-xl font-medium mt-8">
             Enter a valid MuseScore profile link.
           </p>
@@ -52,7 +66,11 @@ export default function Home() {
             type="text"
             placeholder="e.g. https://musescore.com/user/34214067"
             className="w-96 h-12 mt-4 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-blue-500 placeholder:italic"
-            onChange={(e) => setLink(e.target.value)}
+            onChange={(e) =>
+              setLink(
+                e.target.value + (e.target.value.slice(-1) == "/" ? "" : "/")
+              )
+            }
           />
           <button
             className="w-96 h-12 mt-4 rounded-lg bg-blue-500 text-white font-medium"

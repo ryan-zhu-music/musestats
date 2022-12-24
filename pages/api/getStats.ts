@@ -12,10 +12,17 @@ export default function handler(
 ) {
   fetch(req.body.link).then((response) => {
     response.text().then((data) => {
-      res.status(200).json({
-        link: req.body.link,
-        response: data,
-      });
+      if (data.includes("Page not found")) {
+        res.status(404).json({
+          link: req.body.link,
+          response: "Not found",
+        });
+      } else {
+        res.status(200).json({
+          link: req.body.link,
+          response: data,
+        });
+      }
     });
   });
 }
