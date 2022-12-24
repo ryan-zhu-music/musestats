@@ -22,6 +22,10 @@ export default function Results({ statistics }: Props) {
     a.click();
   };
 
+  const commas = (x: number) => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
   return (
     <main id="results" className="w-screen py-16 bg-white">
       <div className="lg:grid lg:grid-cols-2 px-5 md:px-16 lg:px-32 w-full h-full">
@@ -99,19 +103,19 @@ export default function Results({ statistics }: Props) {
               <ul className="flex flex-col items-start justify-evenly">
                 <li className="text-base text-dark-grey mb-1">
                   <span className="font-bold">Followers: </span>
-                  {statistics.counters.followers}
+                  {commas(statistics.counters.followers)}
                 </li>
                 <li className="text-base text-dark-grey mb-1">
                   <span className="font-bold">Following: </span>
-                  {statistics.counters.following}
+                  {commas(statistics.counters.following)}
                 </li>
                 <li className="text-base text-dark-grey mb-1">
                   <span className="font-bold">Sets: </span>
-                  {statistics.counters.sets}
+                  {commas(statistics.counters.sets)}
                 </li>
                 <li className="text-base text-dark-grey mb-1">
                   <span className="font-bold">Groups: </span>
-                  {statistics.counters.groups}
+                  {commas(statistics.counters.groups)}
                 </li>
               </ul>
             </div>
@@ -124,15 +128,15 @@ export default function Results({ statistics }: Props) {
               <ul className="flex flex-col items-start justify-center">
                 <li className="text-base text-dark-grey mb-1">
                   <span className="font-bold">Public: </span>
-                  {statistics.counters.scores}
+                  {commas(statistics.counters.scores)}
                 </li>
                 <li className="text-base text-dark-grey mb-1">
                   <span className="font-bold">Original: </span>
-                  {statistics.scores.original}
+                  {commas(statistics.scores.original)}
                 </li>
                 <li className="text-base text-dark-grey mb-1">
                   <span className="font-bold">Public Domain: </span>
-                  {statistics.scores.public_domain}
+                  {commas(statistics.scores.public_domain)}
                 </li>
               </ul>
             </div>
@@ -143,15 +147,15 @@ export default function Results({ statistics }: Props) {
               <ul className="w-full grid grid-cols-2">
                 <li className="text-base text-dark-grey mb-1">
                   <span className="font-bold">Views:</span>{" "}
-                  {statistics.scores.views}
+                  {commas(statistics.scores.views)}
                 </li>
                 <li className="text-base text-dark-grey mb-1">
                   <span className="font-bold">Favourites:</span>{" "}
-                  {statistics.scores.favourites}
+                  {commas(statistics.scores.favourites)}
                 </li>
                 <li className="text-base text-dark-grey mb-1">
                   <span className="font-bold">Comments:</span>{" "}
-                  {statistics.scores.comments}
+                  {commas(statistics.scores.comments)}
                 </li>
                 <li className="text-base text-dark-grey mb-1">
                   <span className="font-bold">Duration:</span>{" "}
@@ -159,11 +163,11 @@ export default function Results({ statistics }: Props) {
                 </li>
                 <li className="text-base text-dark-grey mb-1">
                   <span className="font-bold">Pages:</span>{" "}
-                  {statistics.scores.pages}
+                  {commas(statistics.scores.pages)}
                 </li>
                 <li className="text-base text-dark-grey mb-1">
                   <span className="font-bold">Votes:</span>{" "}
-                  {statistics.scores.votes}
+                  {commas(statistics.scores.votes)}
                 </li>
               </ul>
             </div>
@@ -174,15 +178,15 @@ export default function Results({ statistics }: Props) {
               <ul className="grid grid-cols-2 w-full">
                 <li className="text-base text-dark-grey mb-1">
                   <span className="font-bold">Views:</span>{" "}
-                  {statistics.average.views}
+                  {commas(statistics.average.views)}
                 </li>
                 <li className="text-base text-dark-grey mb-1">
                   <span className="font-bold">Favourites:</span>{" "}
-                  {statistics.average.favourites}
+                  {commas(statistics.average.favourites)}
                 </li>
                 <li className="text-base text-dark-grey mb-1">
                   <span className="font-bold">Comments:</span>{" "}
-                  {statistics.average.comments}
+                  {commas(statistics.average.comments)}
                 </li>
                 <li className="text-base text-dark-grey mb-1">
                   <span className="font-bold">Duration:</span>{" "}
@@ -190,11 +194,11 @@ export default function Results({ statistics }: Props) {
                 </li>
                 <li className="text-base text-dark-grey mb-1">
                   <span className="font-bold">Pages:</span>{" "}
-                  {statistics.average.pages}
+                  {commas(statistics.average.pages)}
                 </li>
                 <li className="text-base text-dark-grey mb-1">
                   <span className="font-bold">Votes:</span>{" "}
-                  {statistics.average.votes}
+                  {commas(statistics.average.votes)}
                 </li>
                 <li className="text-base text-dark-grey mb-1">
                   <span className="font-bold">Rating:</span>{" "}

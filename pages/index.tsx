@@ -145,7 +145,7 @@ export default function Home() {
           </div>
         </header>
         {loading && <Skeleton />}
-        {statistics.user && <Results statistics={statistics} />}
+        {statistics.user && !loading && <Results statistics={statistics} />}
       </main>
     </>
   );
