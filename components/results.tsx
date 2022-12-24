@@ -74,6 +74,7 @@ export default function Results({ statistics }: Props) {
           <button
             className="w-full flex flex-row items-center justify-center font-bold text-base py-3 text-white duration-500 hover:opacity-60 gradient-purple"
             onClick={() => handleDownload(fileURL)}
+            name="Download JSON"
           >
             Download as JSON
             <ImDownload className="ml-2" />
