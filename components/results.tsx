@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { ImDownload } from "react-icons/im";
+import { ImDownload, ImNewTab } from "react-icons/im";
 
 type Props = {
   statistics: any;
@@ -33,24 +33,33 @@ export default function Results({ statistics }: Props) {
           <div className="w-full gradient-purple p-1">
             <Image
               src={statistics.user.cover}
-              alt={""}
+              alt={`Cover of ${statistics.user.username}`}
               width={800}
               height={200}
+              className="text-white font-bold"
             />
           </div>
           <div className="flex flex-nowrap items-center justify-start my-5">
             <div className="gradient-purple p-1 rounded-full">
               <Image
                 src={statistics.user.avatar}
-                alt={""}
+                alt={`Avatar of ${statistics.user.username}`}
                 width={80}
                 height={80}
-                className="rounded-full"
+                className="rounded-full text-white font-bold"
               />
             </div>
             <div className="flex flex-col items-start justify-end ml-5">
-              <h3 className="text-3xl md:text-4xl">
+              <h3 className="text-3xl md:text-4xl flex justify-start items-center">
                 {statistics.user.username}
+                <a
+                  href={statistics.user.url}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="hover:underline flex items-center justify-center"
+                >
+                  <ImNewTab className="text-blue-800 hover:text-indigo-400 duration-500 text-2xl md:text-3xl inline-block ml-3" />
+                </a>
               </h3>
               <div className="flex flex-row items-center justify-start">
                 {statistics.user.is_pro && (
@@ -100,7 +109,7 @@ export default function Results({ statistics }: Props) {
                   {statistics.user.date_created}
                 </li>
               </ul>
-              <hr className="w-full my-2 h-[2px] bg-light-grey" />
+              <hr className="w-full my-2 h-[2px] bg-gray-100/90" />
               <ul className="flex flex-col items-start justify-evenly">
                 <li className="text-base text-dark-grey mb-1">
                   <span className="font-bold">Followers: </span>
