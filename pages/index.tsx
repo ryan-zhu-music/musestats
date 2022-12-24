@@ -12,29 +12,25 @@ export default function Home() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const verifyLink = () => {
-    if (link && link.startsWith("https://musescore.com/")) {
-      setError("");
-      getStats();
-    } else {
-      setError("Please enter a valid user link.");
-    }
-  };
-
   const getStats = () => {
+    if (link == "" || !link.startsWith("https://musescore.com/")) {
+      setError("Please enter a valid user link.");
+      return;
+    }
     setLoading(true);
 
     let stats: any = [];
     let page = 1;
 
-    const request = (new_link: string) => {
+    const request = () => {
       fetch("/api/getStats", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          link: new_link,
+          link: link,
+          page: page,
         }),
       })
         .then((res) => {
@@ -42,12 +38,15 @@ export default function Home() {
             page++;
             res.json().then((data) => {
               stats.push(parseStatistics(data.response));
-              request(link + "sheetmusic/?page=" + String(page));
+              request();
             });
           } else {
             setLoading(false);
             if (page == 1 && res.status == 404) {
               setError("User not found.");
+              return;
+            } else if (res.status == 400) {
+              setError("Please enter a valid user link.");
               return;
             }
             setStatistics(mergeStats(stats));
@@ -55,12 +54,13 @@ export default function Home() {
           }
         })
         .catch((err) => {
+          console.log(err);
           setLoading(false);
           setError("Something went wrong. Please try again later.");
           return;
         });
     };
-    request(link + "sheetmusic/?page=" + String(page));
+    request();
   };
 
   useEffect(() => {
@@ -99,13 +99,13 @@ export default function Home() {
                   }
                   onKeyDown={(e) => {
                     if (e.key == "Enter") {
-                      verifyLink();
+                      getStats();
                     }
                   }}
                 />
                 <button
                   className="w-14 text-3xl hover:w-20 duration-500 flex justify-center items-center rounded-r-full bg-[#7C75CF] text-white font-medium"
-                  onClick={verifyLink}
+                  onClick={getStats}
                   name="Search"
                 >
                   <MdPersonSearch />

@@ -10,19 +10,27 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  fetch(req.body.link).then((response) => {
-    response.text().then((data) => {
-      if (data.includes("Page not found")) {
-        res.status(404).json({
-          link: req.body.link,
-          response: "Not found",
-        });
-      } else {
-        res.status(200).json({
-          link: req.body.link,
-          response: data,
-        });
-      }
+  const link = req.body.link;
+  if (link.startsWith("https://musescore.com/")) {
+    fetch(link + "sheetmusic/?page=" + req.body.page).then((response) => {
+      response.text().then((data) => {
+        if (data.includes("Page not found")) {
+          res.status(404).json({
+            link: link,
+            response: "Not found",
+          });
+        } else {
+          res.status(200).json({
+            link: link,
+            response: data,
+          });
+        }
+      });
     });
-  });
+  } else {
+    res.status(400).json({
+      link: link,
+      response: "Invalid link",
+    });
+  }
 }
