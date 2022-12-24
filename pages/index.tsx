@@ -78,11 +78,11 @@ export default function Home() {
       </Head>
       <main className="scroll-smooth">
         <header className="w-screen h-screen flex flex-col items-center justify-center pt-10">
-          <h1 className="text-8xl">MUSESTATS</h1>
-          <h2 className="text-2xl font-semibold mt-3 text-dark-grey">
+          <h1 className="text-4xl md:text-6xl lg:text-8xl">MUSESTATS</h1>
+          <h2 className="text-lg md:text-xl lg:text-2xl text-center font-semibold mt-3 text-dark-grey">
             Get statistics for any MuseScore account!
           </h2>
-          <div className="w-[550px] h-14 mt-5 rounded-full gradient-purple p-[3px]">
+          <div className="w-5/6 md:w-[550px] h-14 mt-5 rounded-full gradient-purple p-[3px]">
             <div className="w-full h-full rounded-full flex items-stretch justify-between flex-nowrap">
               <input
                 type="text"
@@ -108,42 +108,38 @@ export default function Home() {
               </button>
             </div>
             {error && (
-              <p className="text-red-500 text-md font-semibold mt-2 text-center">
+              <p className="text-red-500 text-base md:text-md font-semibold mt-2 text-center">
                 Please enter a valid user link.
               </p>
             )}
           </div>
-          <div className="justify-self-end mt-10">
-            <div className="flex flex-row items-center justify-center">
-              <p className="text-dark-grey">
-                View{" "}
-                <a
-                  href="https://github.com/ryan-zhu-music/musestats"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="font-bold underline hover:text-indigo-600/50 duration-500"
-                >
-                  GitHub repo
-                </a>
-              </p>
-            </div>
-            <div className="flex flex-row items-center justify-center">
-              <p className="text-dark-grey">
-                Made with Next.js by{" "}
-                <a
-                  href="https://www.ryanzhu.com"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="font-bold underline hover:text-indigo-600/50 duration-500"
-                >
-                  Ryan Zhu
-                </a>
-              </p>
-            </div>
-            <p className="text-sm text-light-grey mt-10 text-center">
+          <div className="justify-self-end flex flex-col items-center justify-center mt-10">
+            <p className="text-dark-grey text-base md:text-md">
+              View{" "}
+              <a
+                href="https://github.com/ryan-zhu-music/musestats"
+                target="_blank"
+                rel="noreferrer noopener"
+                className="font-bold underline hover:text-indigo-600/50 duration-500"
+              >
+                GitHub repo
+              </a>
+            </p>
+            <p className="text-dark-grey text-base md:text-md">
+              Made with Next.js by{" "}
+              <a
+                href="https://www.ryanzhu.com"
+                target="_blank"
+                rel="noreferrer noopener"
+                className="font-bold underline hover:text-indigo-600/50 duration-500"
+              >
+                Ryan Zhu
+              </a>
+            </p>
+            <p className="text-xs md:text-sm text-light-grey mt-10 text-center">
               No results/data are collected.
             </p>
-            <p className="text-sm text-light-grey text-center mt-2">
+            <p className="text-xs md:text-sm text-light-grey text-center mt-2">
               This website is not affiliated with MuseScore.
             </p>
           </div>

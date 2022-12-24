@@ -24,8 +24,8 @@ export default function Results({ statistics }: Props) {
 
   return (
     <main id="results" className="w-screen py-16 bg-white">
-      <div className="grid grid-cols-2 px-32 w-full h-full">
-        <div className="w-full h-full flex flex-col items-stretch justify-start pr-5">
+      <div className="lg:grid lg:grid-cols-2 px-5 md:px-16 lg:px-32 w-full h-full">
+        <div className="w-full h-full flex flex-col items-stretch justify-start lg:pr-5">
           <div className="w-full gradient-purple p-1">
             <Image
               src={statistics.user.cover}
@@ -34,7 +34,7 @@ export default function Results({ statistics }: Props) {
               height={200}
             />
           </div>
-          <div className="flex flex-nowrap items-end justify-start my-5">
+          <div className="flex flex-nowrap items-center justify-start my-5">
             <div className="gradient-purple p-1 rounded-full">
               <Image
                 src={statistics.user.avatar}
@@ -44,8 +44,10 @@ export default function Results({ statistics }: Props) {
                 className="rounded-full"
               />
             </div>
-            <div className="flex flex-col items-start justify-end ml-5 mb-1">
-              <h3 className="text-4xl">{statistics.user.username}</h3>
+            <div className="flex flex-col items-start justify-end ml-5">
+              <h3 className="text-3xl md:text-4xl">
+                {statistics.user.username}
+              </h3>
               <div className="flex flex-row items-center justify-start">
                 {statistics.user.is_pro && (
                   <p className="flex flex-row items-center justify-center mr-2 px-3 py-1 text-dark-grey bg-emerald-400 font-bold text-xs rounded-full">
@@ -115,7 +117,7 @@ export default function Results({ statistics }: Props) {
             </div>
           </div>
         </div>
-        <div className="grid grid-rows-3 h-full pl-5">
+        <div className="grid grid-rows-3 h-full lg:pl-5 lg:mt-0 mt-5">
           <div className="w-full p-1 gradient-red mb-5">
             <div className="h-full flex flex-col items-start justify-center bg-purple-50 p-6">
               <h4 className="text-2xl mb-2">Scores</h4>
