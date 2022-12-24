@@ -4,7 +4,7 @@ export const mergeStats = (stats: any) => {
     user: stats[stats.length - 1].user,
     counters: stats[stats.length - 1].counters,
     scores: {
-      plays: 0,
+      views: 0,
       comments: 0,
       duration: 0,
       pages: 0,
@@ -17,7 +17,7 @@ export const mergeStats = (stats: any) => {
   };
 
   stats.forEach((stat: any) => {
-    mergedStats.scores.plays += stat.scores.plays;
+    mergedStats.scores.views += stat.scores.views;
     mergedStats.scores.comments += stat.scores.comments;
     mergedStats.scores.duration += stat.scores.duration;
     mergedStats.scores.pages += stat.scores.pages;

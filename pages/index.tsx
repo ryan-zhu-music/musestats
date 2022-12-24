@@ -3,6 +3,7 @@ import { MdPersonSearch } from "react-icons/md";
 import { useState } from "react";
 import { parseStatistics } from "../utils/parser";
 import { mergeStats } from "../utils/mergeStats";
+import Results from "../components/results";
 
 export default function Home() {
   const [link, setLink] = useState("");
@@ -41,8 +42,6 @@ export default function Home() {
     request(link + "sheetmusic/?page=" + String(page));
   };
 
-  console.log(statistics);
-
   return (
     <>
       <Head>
@@ -64,7 +63,7 @@ export default function Home() {
             <input
               type="text"
               placeholder="e.g. https://musescore.com/user/34214067"
-              className="w-full rounded-l-full pl-4 font-normal focus:outline-none placeholder:italic bg-white"
+              className="w-full text-dark-grey placeholder:text-light-grey rounded-l-full pl-4 font-normal focus:outline-none placeholder:italic bg-white"
               onChange={(e) =>
                 setLink(
                   e.target.value + (e.target.value.slice(-1) == "/" ? "" : "/")
@@ -91,6 +90,7 @@ export default function Home() {
           </div>
         </div>
       </header>
+      {statistics.user && <Results statistics={statistics} />}
     </>
   );
 }

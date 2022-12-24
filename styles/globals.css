@@ -30,12 +30,25 @@ h4 {
 
 h2,
 p,
-input {
+input,
+li {
   font-family: "Poppins", sans-serif;
 }
 
 .gradient-purple {
   background: linear-gradient(91.73deg, #b9b3ff -4.35%, #6f66d7 108.69%);
+}
+
+.gradient-red {
+  background: linear-gradient(91.73deg, #f5b3b3 -4.35%, #dd3d5a 108.69%);
+}
+
+.gradient-green {
+  background: linear-gradient(91.73deg, #aee8dd -4.35%, #19b7ad 108.69%);
+}
+
+.gradient-blue {
+  background: linear-gradient(91.73deg, #b3e5ff -4.35%, #3d9bdd 108.69%);
 }
 
 header {

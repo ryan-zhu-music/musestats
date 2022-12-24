@@ -40,7 +40,7 @@ export const parseStatistics = (data: string) => {
 
 const scoreParser = (scores: Array<any>) => {
   const scoreStats = {
-    plays: 0,
+    views: 0,
     comments: 0,
     duration: 0,
     pages: 0,
@@ -52,7 +52,7 @@ const scoreParser = (scores: Array<any>) => {
   };
 
   scores.forEach((score) => {
-    scoreStats.plays += score.hits;
+    scoreStats.views += score.hits;
     scoreStats.comments += score.comments_count;
     scoreStats.duration += score.length;
     scoreStats.pages += score.pages_count;
