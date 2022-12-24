@@ -8,6 +8,16 @@ import Results from "../components/results";
 export default function Home() {
   const [link, setLink] = useState("");
   const [statistics, setStatistics] = useState<any>({});
+  const [error, setError] = useState(false);
+
+  const verifyLink = () => {
+    if (link && link.startsWith("https://musescore.com/user/")) {
+      setError(false);
+      getStats();
+    } else {
+      setError(true);
+    }
+  };
 
   const getStats = () => {
     let stats: any = [];
@@ -66,30 +76,30 @@ export default function Home() {
               className="w-full text-dark-grey placeholder:text-light-grey rounded-l-full pl-4 font-normal focus:outline-none placeholder:italic bg-indigo-100 focus:bg-white hover:bg-white duration-500"
               onChange={(e) =>
                 setLink(
-                  e.target.value + (e.target.value.slice(-1) == "/" ? "" : "/")
+                  e.target.value.trim() +
+                    (e.target.value.slice(-1) == "/" ? "" : "/")
                 )
               }
               onKeyDown={(e) => {
                 if (e.key == "Enter") {
-                  if (link) {
-                    getStats();
-                  }
+                  verifyLink();
                 }
               }}
             />
             <button
               className="w-14 text-3xl hover:w-20 duration-500 flex justify-center items-center rounded-r-full bg-[#7C75CF] text-white font-medium"
-              onClick={() => {
-                if (link) {
-                  getStats();
-                }
-              }}
+              onClick={verifyLink}
             >
               <MdPersonSearch />
             </button>
           </div>
+          {error && (
+            <p className="text-red-500 text-md font-semibold mt-2 text-center">
+              Please enter a valid link.
+            </p>
+          )}
         </div>
-        <div className="justify-self-end mt-5">
+        <div className="justify-self-end mt-10">
           <div className="flex flex-row items-center justify-center">
             <p className="text-dark-grey">
               View{" "}
