@@ -100,6 +100,7 @@ export default function Home() {
                 <button
                   className="w-14 text-3xl hover:w-20 duration-500 flex justify-center items-center rounded-r-full bg-[#7C75CF] text-white font-medium"
                   onClick={verifyLink}
+                  name="search"
                 >
                   <MdPersonSearch />
                 </button>
