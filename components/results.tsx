@@ -33,7 +33,7 @@ export default function Results({ statistics }: Props) {
           <div className="w-full gradient-purple p-1">
             <Image
               src={statistics.user.cover}
-              alt={`Cover of ${statistics.user.username}`}
+              alt={""}
               width={800}
               height={200}
             />
@@ -42,7 +42,7 @@ export default function Results({ statistics }: Props) {
             <div className="gradient-purple p-1 rounded-full">
               <Image
                 src={statistics.user.avatar}
-                alt={`Avatar of ${statistics.user.username}`}
+                alt={""}
                 width={80}
                 height={80}
                 className="rounded-full"

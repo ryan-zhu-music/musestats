@@ -1,8 +1,8 @@
 export default function Skeleton() {
   return (
     <main className="w-screen py-16 bg-white" id="results">
-      <div className="grid grid-cols-2 px-32 w-full h-full fade">
-        <div className="w-full h-full flex flex-col items-stretch justify-start pr-5">
+      <div className="lg:grid lg:grid-cols-2 px-5 md:px-16 lg:px-32 w-full h-full fade">
+        <div className="w-full h-full flex flex-col items-stretch justify-start lg:pr-5">
           <div className="w-full bg-slate-300/70 p-1 h-32" />
           <div className="flex flex-nowrap items-end justify-start my-5">
             <div className="rounded-full bg-slate-300/70 p-1 h-20 w-20" />
@@ -55,7 +55,7 @@ export default function Skeleton() {
             </div>
           </div>
         </div>
-        <div className="grid grid-rows-3 h-full pl-5">
+        <div className="grid grid-rows-3 h-full lg:pl-5">
           <div className="w-full p-1 bg-slate-300/70 mb-5">
             <div className="h-full flex flex-col items-start justify-around bg-white p-6">
               <div className="rounded-full bg-slate-300/70 h-8 w-28" />

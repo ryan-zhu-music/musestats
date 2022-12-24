@@ -9,15 +9,15 @@ import Skeleton from "../components/skeleton";
 export default function Home() {
   const [link, setLink] = useState("");
   const [statistics, setStatistics] = useState<any>({});
-  const [error, setError] = useState(false);
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const verifyLink = () => {
     if (link && link.startsWith("https://musescore.com/")) {
-      setError(false);
+      setError("");
       getStats();
     } else {
-      setError(true);
+      setError("Please enter a valid user link.");
     }
   };
 
@@ -45,13 +45,19 @@ export default function Home() {
               request(link + "sheetmusic/?page=" + String(page));
             });
           } else {
-            setStatistics(mergeStats(stats));
             setLoading(false);
+            if (page == 1 && res.status == 404) {
+              setError("User not found.");
+              return;
+            }
+            setStatistics(mergeStats(stats));
             return;
           }
         })
         .catch((err) => {
-          console.log(err);
+          setLoading(false);
+          setError("Something went wrong. Please try again later.");
+          return;
         });
     };
     request(link + "sheetmusic/?page=" + String(page));
@@ -76,7 +82,7 @@ export default function Home() {
           <div className="absolute z-0 w-96 h-96 md:w-[500px] md:h-[500px] -top-16 -left-24 rotate-[190deg] bg-no-repeat bg-contain bg-center bg-[url('/music-note.svg')]" />
           <div className="relative z-50 w-full h-full flex flex-col items-center justify-center pt-10">
             <h1 className="text-4xl md:text-6xl lg:text-8xl">MUSESTATS</h1>
-            <h2 className="text-lg md:text-xl lg:text-2xl text-center font-semibold mt-3 text-dark-grey">
+            <h2 className="mx-4 text-lg md:text-xl lg:text-2xl text-center font-semibold mt-3 text-dark-grey">
               Get statistics for any MuseScore account!
             </h2>
             <div className="w-5/6 md:w-[550px] h-14 mt-5 rounded-full gradient-purple p-[3px]">
@@ -105,11 +111,9 @@ export default function Home() {
                   <MdPersonSearch />
                 </button>
               </div>
-              {error && (
-                <p className="text-red-500 text-base md:text-md font-semibold mt-2 text-center">
-                  Please enter a valid user link.
-                </p>
-              )}
+              <p className="text-red-500 text-base md:text-md font-semibold mt-2 text-center">
+                {error}
+              </p>
             </div>
             <div className="justify-self-end flex flex-col items-center justify-center mt-10">
               <p className="text-dark-grey text-base md:text-md">
