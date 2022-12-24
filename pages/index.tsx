@@ -53,7 +53,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header className="w-screen h-screen flex flex-col items-center justify-center">
+      <header className="w-screen h-screen flex flex-col items-center justify-center pt-10">
         <h1 className="text-8xl">MUSESTATS</h1>
         <h2 className="text-2xl font-semibold mt-3 text-dark-grey">
           Get statistics for any MuseScore account!
@@ -63,7 +63,7 @@ export default function Home() {
             <input
               type="text"
               placeholder="e.g. https://musescore.com/user/34214067"
-              className="w-full text-dark-grey placeholder:text-light-grey rounded-l-full pl-4 font-normal focus:outline-none placeholder:italic bg-white"
+              className="w-full text-dark-grey placeholder:text-light-grey rounded-l-full pl-4 font-normal focus:outline-none placeholder:italic bg-indigo-100 focus:bg-white hover:bg-white duration-500"
               onChange={(e) =>
                 setLink(
                   e.target.value + (e.target.value.slice(-1) == "/" ? "" : "/")
@@ -78,7 +78,7 @@ export default function Home() {
               }}
             />
             <button
-              className="w-14 text-2xl hover:text-3xl hover:w-16 duration-500 flex justify-center items-center rounded-r-full bg-[#7C75CF] text-white font-medium"
+              className="w-14 text-3xl hover:w-20 duration-500 flex justify-center items-center rounded-r-full bg-[#7C75CF] text-white font-medium"
               onClick={() => {
                 if (link) {
                   getStats();
@@ -88,6 +88,40 @@ export default function Home() {
               <MdPersonSearch />
             </button>
           </div>
+        </div>
+        <div className="justify-self-end mt-5">
+          <div className="flex flex-row items-center justify-center">
+            <p className="text-dark-grey">
+              View{" "}
+              <a
+                href="https://github.com/ryan-zhu-music/musestats"
+                target="_blank"
+                rel="noreferrer noopener"
+                className="font-bold underline hover:text-indigo-600/50 duration-500"
+              >
+                GitHub repo
+              </a>
+            </p>
+          </div>
+          <div className="flex flex-row items-center justify-center">
+            <p className="text-dark-grey">
+              Made with Next.js by{" "}
+              <a
+                href="https://www.ryanzhu.com"
+                target="_blank"
+                rel="noreferrer noopener"
+                className="font-bold underline hover:text-indigo-600/50 duration-500"
+              >
+                Ryan Zhu
+              </a>
+            </p>
+          </div>
+          <p className="text-sm text-light-grey mt-10 text-center">
+            No results/data are collected.
+          </p>
+          <p className="text-sm text-light-grey text-center mt-2">
+            This website is not affiliated with MuseScore.
+          </p>
         </div>
       </header>
       {statistics.user && <Results statistics={statistics} />}

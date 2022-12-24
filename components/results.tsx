@@ -7,10 +7,26 @@ type Props = {
 };
 
 export default function Results({ statistics }: Props) {
+  const file = new Blob([JSON.stringify(statistics)], {
+    type: "application/json",
+  });
+  const fileURL = URL.createObjectURL(file);
+
+  const handleDownload = (url: string) => {
+    console.log(url);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `musestats-${statistics.user.username.replaceAll(
+      " ",
+      "-"
+    )}.json`;
+    a.click();
+  };
+
   return (
     <main className="w-screen py-16 bg-white">
       <div className="grid grid-cols-2 px-32 w-full h-full">
-        <div className="w-full h-full flex flex-col items-stretch justify-start pr-10">
+        <div className="w-full h-full flex flex-col items-stretch justify-start pr-5">
           <div className="w-full gradient-purple p-1">
             <Image
               src={statistics.user.cover}
@@ -50,13 +66,16 @@ export default function Results({ statistics }: Props) {
               </div>
             </div>
           </div>
-          <button className="w-full flex flex-row items-center justify-center font-bold text-base py-3 text-white gradient-purple">
+          <button
+            className="w-full flex flex-row items-center justify-center font-bold text-base py-3 text-white duration-500 hover:opacity-60 gradient-purple"
+            onClick={() => handleDownload(fileURL)}
+          >
             Download as JSON
             <ImDownload className="ml-2" />
           </button>
           <div className="w-full h-full p-1 gradient-purple mt-4">
             <div className="h-full flex flex-col items-start justify-evenly bg-indigo-100 p-6">
-              <h4 className="text-3xl mb-2">User</h4>
+              <h4 className="text-2xl mb-2">User</h4>
               <ul className="flex flex-col items-start justify-evenly">
                 <li className="text-base text-dark-grey mb-1">
                   <span className="font-bold">Name: </span>
@@ -97,10 +116,10 @@ export default function Results({ statistics }: Props) {
             </div>
           </div>
         </div>
-        <div className="grid grid-rows-3 h-full">
+        <div className="grid grid-rows-3 h-full pl-5">
           <div className="w-full p-1 gradient-red mb-5">
             <div className="h-full flex flex-col items-start justify-center bg-purple-50 p-6">
-              <h4 className="text-3xl mb-2">Scores</h4>
+              <h4 className="text-2xl mb-2">Scores</h4>
               <ul className="flex flex-col items-start justify-center">
                 <li className="text-base text-dark-grey mb-1">
                   <span className="font-bold">Public: </span>
@@ -119,7 +138,7 @@ export default function Results({ statistics }: Props) {
           </div>
           <div className="w-full p-1 gradient-green mb-5">
             <div className="h-full flex flex-col items-start justify-center bg-blue-50 p-6">
-              <h4 className="text-3xl mb-2">Totals</h4>
+              <h4 className="text-2xl mb-2">Totals</h4>
               <ul className="w-full grid grid-cols-2">
                 <li className="text-base text-dark-grey mb-1">
                   <span className="font-bold">Views:</span>{" "}
@@ -150,8 +169,8 @@ export default function Results({ statistics }: Props) {
           </div>
           <div className="w-full p-1 gradient-blue">
             <div className="h-full flex flex-col items-start justify-center bg-blue-50 p-6">
-              <h4 className="text-3xl mb-2">Average per score</h4>
-              <ul className="grid grid-cols-2">
+              <h4 className="text-2xl mb-2">Average per score</h4>
+              <ul className="grid grid-cols-2 w-full">
                 <li className="text-base text-dark-grey mb-1">
                   <span className="font-bold">Views:</span>{" "}
                   {statistics.average.views}
