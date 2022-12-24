@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { MdPersonSearch } from "react-icons/md";
 import { useState } from "react";
 import { parseStatistics } from "../utils/parser";
 import { mergeStats } from "../utils/mergeStats";
@@ -53,37 +54,43 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="w-screen h-screen flex flex-col items-center justify-center">
-        <h1 className="text-6xl font-bold">MuseStats</h1>
-        <h2 className="text-2xl font-medium mt-4">
+      <header className="w-screen h-screen flex flex-col items-center justify-center">
+        <h1 className="text-8xl">MUSESTATS</h1>
+        <h2 className="text-2xl font-semibold mt-3 text-dark-grey">
           Get statistics for any MuseScore account!
         </h2>
-        <div className="flex items-center justify-center flex-col">
-          <p className="text-xl font-medium mt-8">
-            Enter a valid MuseScore profile link.
-          </p>
-          <input
-            type="text"
-            placeholder="e.g. https://musescore.com/user/34214067"
-            className="w-96 h-12 mt-4 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-blue-500 placeholder:italic"
-            onChange={(e) =>
-              setLink(
-                e.target.value + (e.target.value.slice(-1) == "/" ? "" : "/")
-              )
-            }
-          />
-          <button
-            className="w-96 h-12 mt-4 rounded-lg bg-blue-500 text-white font-medium"
-            onClick={() => {
-              if (link) {
-                getStats();
+        <div className="w-[550px] h-14 mt-5 rounded-full gradient-purple p-[3px]">
+          <div className="w-full h-full rounded-full flex items-stretch justify-between flex-nowrap">
+            <input
+              type="text"
+              placeholder="e.g. https://musescore.com/user/34214067"
+              className="w-full rounded-l-full pl-4 font-normal focus:outline-none placeholder:italic bg-white"
+              onChange={(e) =>
+                setLink(
+                  e.target.value + (e.target.value.slice(-1) == "/" ? "" : "/")
+                )
               }
-            }}
-          >
-            Get Stats
-          </button>
+              onKeyDown={(e) => {
+                if (e.key == "Enter") {
+                  if (link) {
+                    getStats();
+                  }
+                }
+              }}
+            />
+            <button
+              className="w-14 text-2xl hover:text-3xl hover:w-16 duration-500 flex justify-center items-center rounded-r-full bg-[#7C75CF] text-white font-medium"
+              onClick={() => {
+                if (link) {
+                  getStats();
+                }
+              }}
+            >
+              <MdPersonSearch />
+            </button>
+          </div>
         </div>
-      </main>
+      </header>
     </>
   );
 }

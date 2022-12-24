@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:ital,wght@0,400;0,600;0,700;1,400&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,4 +14,35 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+}
+
+h1,
+h3,
+h4 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  background: linear-gradient(90deg, #359eff -6.16%, #2d21bb 111.36%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+h2,
+p,
+input {
+  font-family: "Poppins", sans-serif;
+}
+
+.gradient-purple {
+  background: linear-gradient(91.73deg, #b9b3ff -4.35%, #6f66d7 108.69%);
+}
+
+header {
+  background: linear-gradient(
+    119.46deg,
+    #e5e5ff -0.27%,
+    #dde2ff 49.71%,
+    #c2deff 102.04%
+  );
 }
