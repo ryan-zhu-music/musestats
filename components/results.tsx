@@ -13,7 +13,6 @@ export default function Results({ statistics }: Props) {
   const fileURL = URL.createObjectURL(file);
 
   const handleDownload = (url: string) => {
-    console.log(url);
     const a = document.createElement("a");
     a.href = url;
     a.download = `musestats-${statistics.user.username.replaceAll(
@@ -24,7 +23,7 @@ export default function Results({ statistics }: Props) {
   };
 
   return (
-    <main className="w-screen py-16 bg-white">
+    <main id="results" className="w-screen py-16 bg-white">
       <div className="grid grid-cols-2 px-32 w-full h-full">
         <div className="w-full h-full flex flex-col items-stretch justify-start pr-5">
           <div className="w-full gradient-purple p-1">
