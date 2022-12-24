@@ -69,10 +69,10 @@ export const mergeStats = (stats: any) => {
 };
 
 const convertFromSeconds = (seconds: number) => {
-  const days = Math.floor(seconds / 86400);
-  const hours = Math.floor(seconds / 3600);
+  const days = Math.floor(seconds / (3600 * 24));
+  const hours = Math.floor((seconds % (3600 * 24)) / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
-  const secondsLeft = seconds % 60;
+  const secondsLeft = Math.floor(seconds % 60);
 
   let result = "";
   if (days > 0) result += `${days}d `;
