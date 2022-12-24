@@ -61,19 +61,19 @@ export default function Results({ statistics }: Props) {
                   <ImNewTab className="text-blue-800 hover:text-indigo-400 duration-500 text-2xl md:text-3xl inline-block ml-3" />
                 </a>
               </h3>
-              <div className="flex flex-row items-center justify-start">
+              <div className="flex flex-row items-center justify-start mt-1">
                 {statistics.user.is_pro && (
-                  <p className="flex flex-row items-center justify-center mr-2 px-3 py-1 text-dark-grey bg-emerald-400 font-bold text-xs rounded-full">
+                  <p className="flex flex-row items-center justify-center mr-2 px-3 py-1 text-white bg-emerald-400 font-bold text-xs rounded-full">
                     pro
                   </p>
                 )}
                 {statistics.user.is_moderator && (
-                  <p className="flex flex-row items-center justify-center mr-2 px-3 py-1 text-dark-grey bg-slate-400 font-bold text-xs rounded-full">
+                  <p className="flex flex-row items-center justify-center mr-2 px-3 py-1 text-white bg-slate-400 font-bold text-xs rounded-full">
                     moderator
                   </p>
                 )}
                 {statistics.user.is_staff && (
-                  <p className="flex flex-row items-center justify-center mr-2 px-3 py-1 text-dark-grey bg-blue-400 font-bold text-xs rounded-full">
+                  <p className="flex flex-row items-center justify-center mr-2 px-3 py-1 text-white bg-blue-400 font-bold text-xs rounded-full">
                     staff
                   </p>
                 )}
