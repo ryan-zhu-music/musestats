@@ -74,7 +74,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>MuseStats</title>
+        <title>MuseStats - Get Detailed MuseScore Statistics</title>
       </Head>
       <main className="scroll-smooth">
         <header className="relative w-screen h-screen">
