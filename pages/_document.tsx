@@ -13,7 +13,7 @@ export default function Document() {
         <link rel="icon" href="/favicon.ico" />
         <meta name="author" content="Ryan Zhu" />
 
-        <meta property="og:url" content="https://musestats.github.io" />
+        <meta property="og:url" content="https://musestats.vercel.app/" />
         <meta property="og:site_name" content="MuseStats" />
         <meta property="og:title" content="MuseStats" />
         <meta property="og:type" content="website" />
