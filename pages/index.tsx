@@ -48,6 +48,10 @@ export default function Home() {
             } else if (res.status == 400) {
               setError("Please enter a valid user link.");
               return;
+            } else if (res.status == 500) {
+              console.log(res);
+              setError("Something went wrong. Please try again later.");
+              return;
             }
             setStatistics(mergeStats(stats));
             return;
